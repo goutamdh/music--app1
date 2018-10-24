@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+  <span>MUSIC - PLAYER</span>
+  <span class="example-fill-remaining-space"></span>
+  <button mat-button>About</button>
+    <button mat-button>contact</button>
+
+    <button mat-icon-button (click)="toggleShowSearch()">
+      <mat-icon>search</mat-icon>
+    </button>
+    <form class="example-form" *ngIf="show">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Search" [matAutocomplete]="auto" [formControl]="stateCtrl">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let track of filteredTracks | async" [value]="track.trackName"  (onSelectionChange)="songSelected($event, track)">
+            <span>{{ track.trackName }}</span> 
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </mat-toolbar-row>
+</mat-toolbar>
